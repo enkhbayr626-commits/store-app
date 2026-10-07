@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.MemoryGamePage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          RowSpacing="14"
+          Padding="16,14,16,18">
+        <Grid ColumnDefinitions="Auto,*,Auto"
+              ColumnSpacing="12">
+            <Button Text="‹"
+                    Clicked="OnBackClicked"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    Padding="0"
+                    CornerRadius="18"
+                    BackgroundColor="{StaticResource Surface}"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="28" />
+
+            <VerticalStackLayout Grid.Column="1"
+                                 Spacing="1"
+                                 VerticalOptions="Center">
+                <Label Text="Memory Card"
+                       Style="{StaticResource SectionTitle}" />
+                <Label Text="Ижил хосыг олоод loyalty оноо аваарай"
+                       Style="{StaticResource MutedText}" />
+            </VerticalStackLayout>
+
+            <Button Grid.Column="2"
+                    Text="Шинэ"
+                    Clicked="OnRestartClicked"
+                    Padding="12,0"
+                    HeightRequest="44"
+                    CornerRadius="18"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontFamily="OpenSansSemibold"
+                    FontSize="13" />
+        </Grid>
+
+        <Border Grid.Row="1"
+                Padding="12"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource SoftStroke}"
+                StrokeShape="RoundRectangle 20"
+                StrokeThickness="1">
+            <Grid ColumnDefinitions="*,*,*"
+                  ColumnSpacing="10">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Нүүдэл"
+                           FontSize="11"
+                           TextColor="{StaticResource MutedInk}" />
+                    <Label x:Name="MovesLabel"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="16"
+                           TextColor="{StaticResource Ink}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1"
+                                     Spacing="2">
+                    <Label Text="Хос"
+                           FontSize="11"
+                           TextColor="{StaticResource MutedInk}" />
+                    <Label x:Name="MatchesLabel"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="16"
+                           TextColor="{StaticResource Ink}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2"
+                                     Spacing="2">
+                    <Label Text="Авсан"
+                           FontSize="11"
+                           TextColor="{StaticResource MutedInk}" />
+                    <Label x:Name="EarnedLabel"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="16"
+                           TextColor="{StaticResource Primary}" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2"
+              RowDefinitions="Auto,*"
+              RowSpacing="12">
+            <Border Padding="0"
+                    HeightRequest="110"
+                    BackgroundColor="{StaticResource Surface}"
+                    StrokeShape="RoundRectangle 22"
+                    StrokeThickness="0">
+                <Image Source="memory_banner.jpg"
+                       Aspect="AspectFill" />
+            </Border>
+
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding Cards}"
+                            SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="4"
+                                     HorizontalItemSpacing="8"
+                                     VerticalItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="6"
+                                HeightRequest="82"
+                                BackgroundColor="{StaticResource Surface}"
+                                Stroke="{StaticResource SoftStroke}"
+                                StrokeShape="RoundRectangle 16"
+                                StrokeThickness="1">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCardTapped" />
+                            </Border.GestureRecognizers>
+                            <Image Source="{Binding DisplayImage}"
+                                   Aspect="AspectFit" />
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>

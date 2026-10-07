@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.CartAddedPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="Transparent">
+
+    <Grid x:Name="Overlay"
+          Opacity="0"
+          Padding="18"
+          BackgroundColor="#990F172A">
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnBackdropTapped" />
+        </Grid.GestureRecognizers>
+
+        <Border x:Name="SheetCard"
+                Padding="18"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource SoftStroke}"
+                StrokeShape="RoundRectangle 28"
+                StrokeThickness="1"
+                HorizontalOptions="Fill"
+                VerticalOptions="End"
+                TranslationY="34">
+            <VerticalStackLayout Spacing="16">
+                <BoxView HeightRequest="4"
+                         WidthRequest="46"
+                         CornerRadius="2"
+                         HorizontalOptions="Center"
+                         BackgroundColor="{StaticResource SoftStroke}" />
+
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="13">
+                    <Border WidthRequest="50"
+                            HeightRequest="50"
+                            BackgroundColor="{StaticResource BlueSoft}"
+                            StrokeShape="RoundRectangle 19"
+                            StrokeThickness="0">
+                        <Label Text="✓"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="24"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                    </Border>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="3"
+                                         VerticalOptions="Center">
+                        <Label Text="Сагсанд нэмэгдлээ"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="19"
+                               TextColor="{StaticResource Ink}" />
+                        <Label x:Name="SummaryLabel"
+                               FontSize="13"
+                               TextColor="{StaticResource MutedInk}" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Border Padding="12"
+                        BackgroundColor="{StaticResource ProductImageSurface}"
+                        StrokeShape="RoundRectangle 20"
+                        StrokeThickness="0">
+                    <Grid ColumnDefinitions="74,*,Auto"
+                          ColumnSpacing="12">
+                        <Border WidthRequest="74"
+                                HeightRequest="74"
+                                BackgroundColor="{StaticResource Surface}"
+                                StrokeShape="RoundRectangle 16"
+                                StrokeThickness="0">
+                            <Image x:Name="ProductImage"
+                                   Aspect="AspectFit"
+                                   Margin="8" />
+                        </Border>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Spacing="4"
+                                             VerticalOptions="Center">
+                            <Grid ColumnDefinitions="*,Auto"
+                                  ColumnSpacing="8">
+                                <Label x:Name="BrandLabel"
+                                       FontSize="11"
+                                       TextColor="{StaticResource MutedInk}"
+                                       LineBreakMode="TailTruncation" />
+                                <Border Grid.Column="1"
+                                        Padding="7,3"
+                                        BackgroundColor="{StaticResource BlueSoft}"
+                                        StrokeShape="RoundRectangle 9"
+                                        StrokeThickness="0">
+                                    <Label x:Name="CategoryLabel"
+                                           FontSize="10"
+                                           TextColor="{StaticResource Primary}" />
+                                </Border>
+                            </Grid>
+                            <Label x:Name="ProductNameLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="14"
+                                   TextColor="{StaticResource Ink}"
+                                   MaxLines="2"
+                                   LineBreakMode="TailTruncation" />
+                            <Label x:Name="PriceLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="16"
+                                   TextColor="{StaticResource Ink}" />
+                        </VerticalStackLayout>
+
+                        <Border Grid.Column="2"
+                                Padding="9,7"
+                                BackgroundColor="{StaticResource WarningSoft}"
+                                StrokeShape="RoundRectangle 14"
+                                StrokeThickness="0"
+                                VerticalOptions="End">
+                            <Label x:Name="LoyaltyLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="11"
+                                   TextColor="{StaticResource Ink}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Grid ColumnDefinitions="*,*"
+                      ColumnSpacing="10">
+                    <Button Text="Үргэлжлүүлэх"
+                            Clicked="OnContinueClicked"
+                            HeightRequest="48"
+                            CornerRadius="18"
+                            BackgroundColor="{StaticResource ProductImageSurface}"
+                            TextColor="{StaticResource Ink}"
+                            FontFamily="OpenSansSemibold" />
+                    <Button Grid.Column="1"
+                            Text="Сагс руу очих"
+                            Clicked="OnGoToCartClicked"
+                            HeightRequest="48"
+                            CornerRadius="18"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            FontFamily="OpenSansSemibold" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

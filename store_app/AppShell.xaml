@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="store_app.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:store_app"
+    Title="ХүнсМаркет"
+    FlyoutBehavior="Disabled">
+
+    <TabBar Route="app">
+        <ShellContent
+            Title="Нүүр"
+            Icon="tab_home.svg"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="home" />
+
+        <ShellContent
+            Title="Оноо"
+            Icon="tab_qr.svg"
+            ContentTemplate="{DataTemplate local:LoyaltyPage}"
+            Route="loyalty" />
+
+        <ShellContent
+            Title="Сагс"
+            Icon="tab_cart.svg"
+            ContentTemplate="{DataTemplate local:CartPage}"
+            Route="cart" />
+
+        <ShellContent
+            Title="Профайл"
+            Icon="tab_user.svg"
+            ContentTemplate="{DataTemplate local:ProfilePage}"
+            Route="profile" />
+    </TabBar>
+
+</Shell>

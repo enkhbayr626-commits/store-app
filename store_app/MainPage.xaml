@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.MainPage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid>
+    <ScrollView x:Name="HomeContent">
+        <VerticalStackLayout Padding="18,14,18,92" Spacing="16">
+            <Grid ColumnDefinitions="*,Auto"
+                  ColumnSpacing="12"
+                  Padding="2,0,2,0">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Сайн байна уу?"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="18"
+                           TextColor="{StaticResource Ink}" />
+                    <Label x:Name="UserNameLabel"
+                           Text="Хэрэглэгчийн нэр"
+                           Style="{StaticResource MutedText}" />
+                </VerticalStackLayout>
+
+                <Border Grid.Column="1"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        Padding="0"
+                        BackgroundColor="{StaticResource Surface}"
+                        Stroke="{StaticResource SoftStroke}"
+                        StrokeShape="RoundRectangle 18"
+                        StrokeThickness="1"
+                        VerticalOptions="Center"
+                        SemanticProperties.Description="Мэдэгдэл">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNotificationClicked" />
+                    </Border.GestureRecognizers>
+                    <Grid>
+                        <Image Source="notification_bell.svg"
+                               WidthRequest="22"
+                               HeightRequest="22"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Border WidthRequest="8"
+                                HeightRequest="8"
+                                Margin="0,10,10,0"
+                                BackgroundColor="{StaticResource Accent}"
+                                StrokeShape="RoundRectangle 4"
+                                StrokeThickness="0"
+                                HorizontalOptions="End"
+                                VerticalOptions="Start" />
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Border Padding="12"
+                    BackgroundColor="{StaticResource Primary}"
+                    StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0">
+                <Grid ColumnDefinitions="*,108" ColumnSpacing="12">
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="12"
+                          VerticalOptions="Center">
+                        <Border Padding="14,0"
+                                HeightRequest="48"
+                                BackgroundColor="{StaticResource Surface}"
+                                StrokeShape="RoundRectangle 15"
+                                StrokeThickness="0">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLoyaltyCardTapped" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                                <Border WidthRequest="30"
+                                        HeightRequest="30"
+                                        BackgroundColor="{StaticResource BlueSoft}"
+                                        StrokeShape="RoundRectangle 15"
+                                        StrokeThickness="0"
+                                        VerticalOptions="Center">
+                                    <Label Text="P"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="14"
+                                           TextColor="{StaticResource Primary}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </Border>
+
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="0"
+                                                     VerticalOptions="Center">
+                                    <Label Text="Loyalty оноо"
+                                           FontSize="11"
+                                           TextColor="{StaticResource MutedInk}" />
+                                    <Label x:Name="LoyaltyCardPointsLabel"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="15"
+                                           TextColor="{StaticResource Ink}" />
+                                </VerticalStackLayout>
+
+                                <Label Grid.Column="2"
+                                       Text="›"
+                                       FontSize="22"
+                                       TextColor="{StaticResource SoftStroke}"
+                                       VerticalTextAlignment="Center" />
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                Padding="14,0"
+                                HeightRequest="48"
+                                BackgroundColor="{StaticResource Surface}"
+                                StrokeShape="RoundRectangle 15"
+                                StrokeThickness="0">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPayWithPointsTapped" />
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                                <Border WidthRequest="30"
+                                        HeightRequest="30"
+                                        BackgroundColor="{StaticResource BlueSoft}"
+                                        StrokeShape="RoundRectangle 15"
+                                        StrokeThickness="0"
+                                        VerticalOptions="Center">
+                                    <Label Text="₮"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="14"
+                                           TextColor="{StaticResource Primary}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </Border>
+                                <Label Grid.Column="1"
+                                       Text="Оноо ашиглаж төлөх"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="12"
+                                       TextColor="{StaticResource Ink}"
+                                       LineBreakMode="TailTruncation"
+                                       VerticalTextAlignment="Center" />
+                                <Label Grid.Column="2"
+                                       Text="›"
+                                       FontSize="22"
+                                       TextColor="{StaticResource SoftStroke}"
+                                       VerticalTextAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <Border Grid.Column="1"
+                            Padding="8"
+                            HeightRequest="108"
+                            BackgroundColor="{StaticResource Surface}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="0"
+                            VerticalOptions="Center">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnQrClicked" />
+                        </Border.GestureRecognizers>
+                        <Image Source="qr_code.svg"
+                               Aspect="AspectFit" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <VerticalStackLayout Spacing="12">
+                <Border Padding="14,0"
+                        HeightRequest="46"
+                        BackgroundColor="{StaticResource Surface}"
+                        Stroke="{StaticResource SoftStroke}"
+                        StrokeShape="RoundRectangle 16"
+                        StrokeThickness="1">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Text="⌕"
+                               VerticalTextAlignment="Center"
+                               FontSize="18"
+                               TextColor="{StaticResource Primary}" />
+                        <Entry x:Name="ProductSearchEntry"
+                               Grid.Column="1"
+                               TextChanged="OnSearchTextChanged"
+                               Placeholder="Бараа бүтээгдэхүүн хайх"
+                               PlaceholderColor="{StaticResource MutedInk}"
+                               TextColor="{StaticResource Ink}"
+                               FontSize="13"
+                               HeightRequest="40"
+                               MinimumHeightRequest="0"
+                               ClearButtonVisibility="WhileEditing"
+                               BackgroundColor="Transparent"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="Бүх ангилал"
+                           Style="{StaticResource SectionTitle}" />
+                    <Label Grid.Column="1"
+                           Text="Бүгд"
+                           Style="{StaticResource LinkText}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAllCategoriesTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <ScrollView Orientation="Horizontal"
+                            HorizontalScrollBarVisibility="Never">
+                    <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Categories}"
+                                           Spacing="8">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="14,9"
+                                        BackgroundColor="{StaticResource Surface}"
+                                        Stroke="{StaticResource SoftStroke}"
+                                        StrokeShape="RoundRectangle 18"
+                                        StrokeThickness="1">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnCategoryTapped" />
+                                    </Border.GestureRecognizers>
+                                    <Label Text="{Binding Name}"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="13"
+                                           TextColor="{StaticResource Primary}" />
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </ScrollView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="12">
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="1">
+                        <Label Text="Санал болгох"
+                               Style="{StaticResource SectionTitle}" />
+                        <Label Text="Хямдрал, шинэ бараа, 1% оноо"
+                               Style="{StaticResource MutedText}" />
+                    </VerticalStackLayout>
+                    <Label x:Name="CartSummaryLabel"
+                           Grid.Column="1"
+                           Style="{StaticResource MutedText}"
+                           VerticalTextAlignment="Center" />
+                </Grid>
+
+                <FlexLayout BindableLayout.ItemsSource="{Binding Products}"
+                            Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="SpaceAround"
+                            AlignItems="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border WidthRequest="148"
+                                    MinimumHeightRequest="236"
+                                    Margin="0,0,0,14"
+                                    Padding="9"
+                                    BackgroundColor="{StaticResource Surface}"
+                                    Stroke="{StaticResource SoftStroke}"
+                                    StrokeShape="RoundRectangle 18">
+                                <VerticalStackLayout Spacing="7">
+                                    <Grid HeightRequest="104">
+                                        <Border BackgroundColor="{StaticResource ProductImageSurface}"
+                                                StrokeShape="RoundRectangle 14"
+                                                StrokeThickness="0">
+                                            <Image Source="{Binding Image}"
+                                                   Aspect="AspectFit"
+                                                   Margin="9" />
+                                        </Border>
+                                        <Border Padding="8,4"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Start"
+                                                Margin="7"
+                                                BackgroundColor="{StaticResource Accent}"
+                                                StrokeShape="RoundRectangle 10"
+                                                StrokeThickness="0">
+                                            <Label Text="{Binding Badge}"
+                                                   FontSize="11"
+                                                   FontFamily="OpenSansSemibold"
+                                                   TextColor="{StaticResource Ink}" />
+                                        </Border>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                        <Label Text="{Binding Brand}"
+                                               FontSize="11"
+                                               TextColor="{StaticResource MutedInk}"
+                                               LineBreakMode="TailTruncation" />
+                                        <Border Grid.Column="1"
+                                                Padding="6,2"
+                                                BackgroundColor="{StaticResource BlueSoft}"
+                                                StrokeShape="RoundRectangle 8"
+                                                StrokeThickness="0">
+                                            <Label Text="{Binding Category}"
+                                                   FontSize="9"
+                                                   TextColor="{StaticResource Primary}" />
+                                        </Border>
+                                    </Grid>
+
+                                    <Label Text="{Binding Name}"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="13"
+                                           TextColor="{StaticResource Ink}"
+                                           HeightRequest="40"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="2" />
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                        <VerticalStackLayout Spacing="1">
+                                            <Label Text="{Binding PriceText}"
+                                                   Style="{StaticResource PriceText}" />
+                                            <Label Text="{Binding OldPriceText}"
+                                                   IsVisible="{Binding HasOldPrice}"
+                                                   TextDecorations="Strikethrough"
+                                                   FontSize="11"
+                                                   TextColor="{StaticResource MutedInk}" />
+                                            <Label Text="{Binding LoyaltyText}"
+                                                   FontSize="11"
+                                                   FontFamily="OpenSansSemibold"
+                                                   TextColor="{StaticResource Primary}" />
+                                        </VerticalStackLayout>
+                                        <Button Grid.Column="1"
+                                                Text="+"
+                                                Clicked="OnAddClicked"
+                                                WidthRequest="40"
+                                                HeightRequest="40"
+                                                Padding="0"
+                                                CornerRadius="20"
+                                                BackgroundColor="{StaticResource Primary}"
+                                                TextColor="White"
+                                                FontSize="18" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+
+                <Label x:Name="SearchEmptyLabel"
+                       Text="Илэрц олдсонгүй"
+                       Style="{StaticResource MutedText}"
+                       IsVisible="False"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,6,0,0" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+        <Grid x:Name="QrOverlay"
+              IsVisible="False"
+              Opacity="0"
+              Padding="30"
+              BackgroundColor="#C8F4F8FF">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnQrOverlayTapped" />
+            </Grid.GestureRecognizers>
+
+            <Border Padding="24"
+                    WidthRequest="280"
+                    HeightRequest="280"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource SoftStroke}"
+                    StrokeShape="RoundRectangle 28"
+                    StrokeThickness="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                <Image Source="qr_code.svg"
+                       Aspect="AspectFit" />
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.GamePage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="12"
+          Padding="16,14,16,18">
+        <Grid ColumnDefinitions="Auto,*"
+              ColumnSpacing="12">
+            <Button Text="‹"
+                    Clicked="OnBackClicked"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    Padding="0"
+                    CornerRadius="18"
+                    BackgroundColor="{StaticResource Surface}"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="28" />
+
+            <VerticalStackLayout Grid.Column="1"
+                                 Spacing="1"
+                                 VerticalOptions="Center">
+                <Label Text="Flappy Bird"
+                       Style="{StaticResource SectionTitle}" />
+                <Label Text="Авсан оноо бүр loyalty оноонд нэмэгдэнэ"
+                       Style="{StaticResource MutedText}" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <Border Grid.Row="1"
+                Padding="0"
+                BackgroundColor="{StaticResource Surface}"
+                Stroke="{StaticResource SoftStroke}"
+                StrokeShape="RoundRectangle 24"
+                StrokeThickness="1">
+            <Grid x:Name="PlaySurface">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPlaySurfaceTapped" />
+                </Grid.GestureRecognizers>
+
+                <AbsoluteLayout x:Name="GameArea"
+                                BackgroundColor="#4EC0CA"
+                                SizeChanged="OnGameAreaSizeChanged">
+                    <Image Source="flappy_sky.png"
+                           Aspect="AspectFill"
+                           AbsoluteLayout.LayoutBounds="0,0,1,1"
+                           AbsoluteLayout.LayoutFlags="All" />
+
+                    <Image x:Name="PipeTop1"
+                           Source="flappy_pipe_down.png"
+                           Aspect="Fill" />
+                    <Image x:Name="PipeBottom1"
+                           Source="flappy_pipe_up.png"
+                           Aspect="Fill" />
+                    <Image x:Name="PipeTop2"
+                           Source="flappy_pipe_down.png"
+                           Aspect="Fill" />
+                    <Image x:Name="PipeBottom2"
+                           Source="flappy_pipe_up.png"
+                           Aspect="Fill" />
+                    <Image x:Name="PipeTop3"
+                           Source="flappy_pipe_down.png"
+                           Aspect="Fill" />
+                    <Image x:Name="PipeBottom3"
+                           Source="flappy_pipe_up.png"
+                           Aspect="Fill" />
+
+                    <Image x:Name="Land1"
+                           Source="flappy_land.png"
+                           Aspect="Fill" />
+                    <Image x:Name="Land2"
+                           Source="flappy_land.png"
+                           Aspect="Fill" />
+
+                    <Image x:Name="BirdImage"
+                           Source="flappy_bird_1.png"
+                           Aspect="AspectFit" />
+                </AbsoluteLayout>
+
+                <Grid Padding="16"
+                      InputTransparent="True">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto"
+                              ColumnSpacing="12">
+                            <Border Padding="12,8"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 16"
+                                    StrokeThickness="0">
+                                <HorizontalStackLayout Spacing="6">
+                                    <Label Text="Оноо"
+                                           FontSize="12"
+                                           TextColor="{StaticResource MutedInk}" />
+                                    <Label x:Name="ScoreLabel"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="18"
+                                           TextColor="{StaticResource Ink}" />
+                                </HorizontalStackLayout>
+                            </Border>
+
+                            <Border Grid.Column="1"
+                                    Padding="12,8"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 16"
+                                    StrokeThickness="0">
+                                <HorizontalStackLayout Spacing="6">
+                                    <Label Text="Loyalty"
+                                           FontSize="12"
+                                           TextColor="{StaticResource MutedInk}" />
+                                    <Label x:Name="GameLoyaltyLabel"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="14"
+                                           TextColor="{StaticResource Primary}" />
+                                </HorizontalStackLayout>
+                            </Border>
+                        </Grid>
+
+                        <Label x:Name="HintLabel"
+                               Text="Товшоод нисгэнэ"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="20"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,54,0,0" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Border x:Name="GameOverPanel"
+                        Padding="18"
+                        WidthRequest="270"
+                        BackgroundColor="#F2FFFFFF"
+                        Stroke="{StaticResource SoftStroke}"
+                        StrokeShape="RoundRectangle 24"
+                        StrokeThickness="1"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        IsVisible="False">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Game Over"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="24"
+                               TextColor="{StaticResource Ink}"
+                               HorizontalTextAlignment="Center" />
+                        <Label x:Name="FinalScoreLabel"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="18"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalTextAlignment="Center" />
+                        <Label x:Name="EarnedPointsLabel"
+                               Style="{StaticResource MutedText}"
+                               HorizontalTextAlignment="Center" />
+                        <Button Text="Дахин тоглох"
+                                Clicked="OnRestartClicked"
+                                BackgroundColor="{StaticResource Primary}"
+                                TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

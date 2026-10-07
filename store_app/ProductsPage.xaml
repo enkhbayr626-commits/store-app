@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.ProductsPage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          Padding="20,18,20,0">
+        <Grid ColumnDefinitions="Auto,*"
+              ColumnSpacing="12">
+            <Button Text="‹"
+                    Clicked="OnBackClicked"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    Padding="0"
+                    CornerRadius="18"
+                    BackgroundColor="{StaticResource Surface}"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="28" />
+
+            <VerticalStackLayout Grid.Column="1"
+                                 Spacing="1"
+                                 VerticalOptions="Center">
+                <Label x:Name="CategoryTitleLabel"
+                       Style="{StaticResource SectionTitle}" />
+                <Label x:Name="ProductCountLabel"
+                       Style="{StaticResource MutedText}" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding VisibleProducts}"
+                        SelectionMode="None"
+                        Margin="0,12,0,0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="2"
+                                 HorizontalItemSpacing="12"
+                                 VerticalItemSpacing="14" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+                <VerticalStackLayout Spacing="14"
+                                     Padding="0,0,0,14">
+                    <ScrollView Orientation="Horizontal"
+                                HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Categories}"
+                                               Spacing="8">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="14,9"
+                                            BackgroundColor="{StaticResource Surface}"
+                                            Stroke="{StaticResource SoftStroke}"
+                                            StrokeShape="RoundRectangle 18"
+                                            StrokeThickness="1">
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnCategoryTapped" />
+                                        </Border.GestureRecognizers>
+                                        <Label Text="{Binding Name}"
+                                               FontFamily="OpenSansSemibold"
+                                               FontSize="13"
+                                               TextColor="{StaticResource Primary}" />
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </ScrollView>
+
+                    <Border Padding="14,12"
+                            BackgroundColor="{StaticResource BlueSoft}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="0">
+                        <Label Text="Бараа нэмэхэд худалдан авалтын 1% loyalty оноо болж хуримтлагдана."
+                               FontSize="12"
+                               TextColor="{StaticResource Ink}" />
+                    </Border>
+                </VerticalStackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="9"
+                            MinimumHeightRequest="242"
+                            BackgroundColor="{StaticResource Surface}"
+                            Stroke="{StaticResource SoftStroke}"
+                            StrokeShape="RoundRectangle 18">
+                        <VerticalStackLayout Spacing="7">
+                            <Grid HeightRequest="106">
+                                <Border BackgroundColor="{StaticResource ProductImageSurface}"
+                                        StrokeShape="RoundRectangle 14"
+                                        StrokeThickness="0">
+                                    <Image Source="{Binding Image}"
+                                           Aspect="AspectFit"
+                                           Margin="9" />
+                                </Border>
+                                <Border Padding="8,4"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Start"
+                                        Margin="7"
+                                        BackgroundColor="{StaticResource Accent}"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="0">
+                                    <Label Text="{Binding Badge}"
+                                           FontSize="11"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="{StaticResource Ink}" />
+                                </Border>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="*,Auto"
+                                  ColumnSpacing="8">
+                                <Label Text="{Binding Brand}"
+                                       FontSize="11"
+                                       TextColor="{StaticResource MutedInk}"
+                                       LineBreakMode="TailTruncation" />
+                                <Border Grid.Column="1"
+                                        Padding="6,2"
+                                        BackgroundColor="{StaticResource BlueSoft}"
+                                        StrokeShape="RoundRectangle 8"
+                                        StrokeThickness="0">
+                                    <Label Text="{Binding Category}"
+                                           FontSize="9"
+                                           TextColor="{StaticResource Primary}" />
+                                </Border>
+                            </Grid>
+
+                            <Label Text="{Binding Name}"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="13"
+                                   TextColor="{StaticResource Ink}"
+                                   HeightRequest="42"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="2" />
+
+                            <Grid ColumnDefinitions="*,Auto"
+                                  ColumnSpacing="8">
+                                <VerticalStackLayout Spacing="1">
+                                    <Label Text="{Binding PriceText}"
+                                           Style="{StaticResource PriceText}" />
+                                    <Label Text="{Binding OldPriceText}"
+                                           IsVisible="{Binding HasOldPrice}"
+                                           TextDecorations="Strikethrough"
+                                           FontSize="11"
+                                           TextColor="{StaticResource MutedInk}" />
+                                    <Label Text="{Binding LoyaltyText}"
+                                           FontSize="11"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="{StaticResource Primary}" />
+                                </VerticalStackLayout>
+                                <Button Grid.Column="1"
+                                        Text="+"
+                                        Clicked="OnAddClicked"
+                                        WidthRequest="40"
+                                        HeightRequest="40"
+                                        Padding="0"
+                                        CornerRadius="20"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        TextColor="White"
+                                        FontSize="18" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

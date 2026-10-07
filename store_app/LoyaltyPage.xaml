@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.LoyaltyPage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,18,20,28" Spacing="18">
+            <VerticalStackLayout Spacing="2">
+                <Label Text="Loyalty оноо"
+                       Style="{StaticResource DisplayTitle}" />
+                <Label Text="QR ашиглан оноо цуглуулж, төлбөртөө зарцуулна."
+                       Style="{StaticResource MutedText}" />
+            </VerticalStackLayout>
+
+            <Border Padding="18"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource SoftStroke}"
+                    StrokeShape="RoundRectangle 24"
+                    StrokeThickness="1">
+                <Grid RowDefinitions="Auto,Auto,Auto"
+                      RowSpacing="14">
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Онооны үлдэгдэл"
+                                   FontSize="12"
+                                   TextColor="{StaticResource MutedInk}" />
+                            <Label Text="Төлбөрт шууд ашиглах боломжтой"
+                                   FontSize="12"
+                                   TextColor="{StaticResource MutedInk}" />
+                        </VerticalStackLayout>
+
+                        <Border Grid.Column="1"
+                                Padding="10,6"
+                                BackgroundColor="{StaticResource BlueSoft}"
+                                StrokeShape="RoundRectangle 14"
+                                StrokeThickness="0"
+                                VerticalOptions="Start">
+                            <Label Text="Идэвхтэй"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="11"
+                                   TextColor="{StaticResource Primary}" />
+                        </Border>
+                    </Grid>
+
+                    <HorizontalStackLayout Grid.Row="1"
+                                           Spacing="7">
+                        <Label x:Name="PointBalanceLabel"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="38"
+                               TextColor="{StaticResource Ink}"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="оноо"
+                               FontSize="13"
+                               TextColor="{StaticResource MutedInk}"
+                               VerticalTextAlignment="End"
+                               Margin="0,0,0,8" />
+                    </HorizontalStackLayout>
+
+                    <Border Grid.Row="2"
+                            Padding="12,10"
+                            BackgroundColor="{StaticResource ProductImageSurface}"
+                            StrokeShape="RoundRectangle 16"
+                            StrokeThickness="0">
+                        <Grid ColumnDefinitions="Auto,*"
+                              ColumnSpacing="10">
+                            <Border WidthRequest="28"
+                                    HeightRequest="28"
+                                    BackgroundColor="{StaticResource Surface}"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    VerticalOptions="Center">
+                                <Label Text="₮"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="14"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                            <Label Grid.Column="1"
+                                   Text="1 оноо = 1₮ • Сагсны төлбөрт ашиглана"
+                                   FontSize="12"
+                                   TextColor="{StaticResource MutedInk}"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <VerticalStackLayout Spacing="12">
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="1">
+                        <Label Text="Тоглоомоор оноо авах"
+                               Style="{StaticResource SectionTitle}" />
+                        <Label Text="Тоглоод авсан оноогоо loyalty оноонд нэмнэ"
+                               Style="{StaticResource MutedText}" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Border Padding="0"
+                        HeightRequest="122"
+                        BackgroundColor="{StaticResource Surface}"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 22"
+                        SemanticProperties.Description="Memory card тоглоом руу орох">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMemoryGameTapped" />
+                    </Border.GestureRecognizers>
+                    <Image Source="memory_banner.jpg"
+                           Aspect="AspectFill" />
+                </Border>
+
+                <Border Padding="0"
+                        HeightRequest="118"
+                        BackgroundColor="{StaticResource Surface}"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 22"
+                        SemanticProperties.Description="Flappy bird тоглоом руу орох">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnFlappyGameTapped" />
+                    </Border.GestureRecognizers>
+                    <Image Source="game_banner.png"
+                           Aspect="AspectFill" />
+                </Border>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Миний оноо"
+                           Style="{StaticResource SectionTitle}" />
+                    <Label Text="Худалдан авалт, ашиглалт, тоглоомын онооны түүх"
+                           Style="{StaticResource MutedText}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding RewardEvents}"
+                                     Spacing="10">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="14"
+                                    BackgroundColor="{StaticResource Surface}"
+                                    Stroke="{StaticResource SoftStroke}"
+                                    StrokeShape="RoundRectangle 18">
+                                <Grid ColumnDefinitions="44,*,Auto"
+                                      ColumnSpacing="12">
+                                    <Border WidthRequest="44"
+                                            HeightRequest="44"
+                                            BackgroundColor="{Binding IconBackground}"
+                                            StrokeShape="RoundRectangle 16"
+                                            StrokeThickness="0"
+                                            VerticalOptions="Start">
+                                        <Label Text="{Binding Icon}"
+                                               FontFamily="OpenSansSemibold"
+                                               FontSize="16"
+                                               TextColor="{StaticResource Primary}"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center" />
+                                    </Border>
+
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Spacing="3">
+                                        <Grid ColumnDefinitions="*,Auto"
+                                              ColumnSpacing="8">
+                                            <Label Text="{Binding Title}"
+                                                   Style="{StaticResource CardTitle}"
+                                                   LineBreakMode="TailTruncation" />
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding Time}"
+                                                   FontSize="11"
+                                                   TextColor="{StaticResource MutedInk}" />
+                                        </Grid>
+                                        <Label Text="{Binding Detail}"
+                                               Style="{StaticResource MutedText}"
+                                               LineBreakMode="WordWrap" />
+                                    </VerticalStackLayout>
+
+                                    <Label Grid.Column="2"
+                                           Text="{Binding Points}"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="15"
+                                           TextColor="{Binding PointsColor}"
+                                           VerticalTextAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

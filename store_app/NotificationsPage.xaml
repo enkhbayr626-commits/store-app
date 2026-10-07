@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.NotificationsPage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          Padding="20,18,20,0">
+        <Grid ColumnDefinitions="Auto,*"
+              ColumnSpacing="12">
+            <Button Text="‹"
+                    Clicked="OnBackClicked"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    Padding="0"
+                    CornerRadius="18"
+                    BackgroundColor="{StaticResource Surface}"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="28" />
+
+            <VerticalStackLayout Grid.Column="1"
+                                 Spacing="1"
+                                 VerticalOptions="Center">
+                <Label Text="Мэдэгдэл"
+                       Style="{StaticResource SectionTitle}" />
+                <Label Text="Хямдрал, оноо, захиалгын мэдээлэл"
+                       Style="{StaticResource MutedText}" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Notifications}"
+                        SelectionMode="None"
+                        Margin="0,16,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="14"
+                            Margin="0,0,0,12"
+                            BackgroundColor="{StaticResource Surface}"
+                            Stroke="{StaticResource SoftStroke}"
+                            StrokeShape="RoundRectangle 18">
+                        <Grid ColumnDefinitions="44,*"
+                              ColumnSpacing="12">
+                            <Border WidthRequest="44"
+                                    HeightRequest="44"
+                                    BackgroundColor="{StaticResource BlueSoft}"
+                                    StrokeShape="RoundRectangle 16"
+                                    StrokeThickness="0"
+                                    VerticalOptions="Start">
+                                <Image Source="notification_bell.svg"
+                                       WidthRequest="22"
+                                       HeightRequest="22"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="4">
+                                <Grid ColumnDefinitions="*,Auto"
+                                      ColumnSpacing="10">
+                                    <Label Text="{Binding Title}"
+                                           Style="{StaticResource CardTitle}"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Time}"
+                                           FontSize="11"
+                                           TextColor="{StaticResource MutedInk}" />
+                                </Grid>
+                                <Label Text="{Binding Detail}"
+                                       Style="{StaticResource MutedText}"
+                                       LineBreakMode="WordWrap" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

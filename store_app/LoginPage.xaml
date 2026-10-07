@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.LoginPage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource Primary}">
+
+    <Grid RowDefinitions="*,Auto"
+          BackgroundColor="{StaticResource Primary}">
+        <Grid Padding="28,42,28,0">
+            <Border WidthRequest="260"
+                    HeightRequest="130"
+                    Margin="-76,8,0,0"
+                    BackgroundColor="#1F93C5FD"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 70"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Rotation="-18" />
+
+            <Border WidthRequest="250"
+                    HeightRequest="132"
+                    Margin="0,116,-82,0"
+                    BackgroundColor="#1F60A5FA"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 70"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Rotation="15" />
+
+            <VerticalStackLayout Spacing="6"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,0,36">
+                <Label Text="Тавтай морил"
+                       FontFamily="OpenSansSemibold"
+                       FontSize="36"
+                       TextColor="White" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <Border Grid.Row="1"
+                Padding="26,34,26,28"
+                BackgroundColor="{StaticResource Surface}"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 34,34,0,0"
+                MinimumHeightRequest="390">
+            <VerticalStackLayout Spacing="18">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Нэвтрэх"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="25"
+                           TextColor="{StaticResource Ink}" />
+                    <Label Text="Утасны дугаар болон нууц үгээ оруулна уу."
+                           Style="{StaticResource MutedText}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="12">
+                    <Border Padding="14,0"
+                            HeightRequest="52"
+                            BackgroundColor="{StaticResource ProductImageSurface}"
+                            Stroke="{StaticResource SoftStroke}"
+                            StrokeShape="RoundRectangle 16"
+                            StrokeThickness="1">
+                        <Entry x:Name="PhoneEntry"
+                               Text="99112233"
+                               Placeholder="Утасны дугаар"
+                               Keyboard="Telephone"
+                               TextColor="{StaticResource Ink}"
+                               PlaceholderColor="{StaticResource MutedInk}"
+                               BackgroundColor="Transparent" />
+                    </Border>
+
+                    <Border Padding="14,0"
+                            HeightRequest="52"
+                            BackgroundColor="{StaticResource ProductImageSurface}"
+                            Stroke="{StaticResource SoftStroke}"
+                            StrokeShape="RoundRectangle 16"
+                            StrokeThickness="1">
+                        <Entry x:Name="PasswordEntry"
+                               Text="1234"
+                               Placeholder="Нууц үг"
+                               IsPassword="True"
+                               TextColor="{StaticResource Ink}"
+                               PlaceholderColor="{StaticResource MutedInk}"
+                               BackgroundColor="Transparent" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="Жишээ: 99112233 / 1234"
+                           Style="{StaticResource MutedText}"
+                           VerticalTextAlignment="Center" />
+                    <Label Grid.Column="1"
+                           Text="Нууц үг мартсан?"
+                           FontFamily="OpenSansSemibold"
+                           FontSize="12"
+                           TextColor="{StaticResource Primary}"
+                           VerticalTextAlignment="Center" />
+                </Grid>
+
+                <Label x:Name="ErrorLabel"
+                       Text="Утасны дугаар эсвэл нууц үг буруу байна."
+                       FontSize="13"
+                       TextColor="#EF4444"
+                       IsVisible="False" />
+
+                <Button x:Name="LoginButton"
+                        Text="Нэвтрэх"
+                        Clicked="OnLoginClicked"
+                        HeightRequest="52"
+                        CornerRadius="8"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        FontFamily="OpenSansSemibold" />
+
+                <Label Text="эсвэл"
+                       FontSize="12"
+                       TextColor="{StaticResource MutedInk}"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,-4,0,-8" />
+
+                <Button Text="Бүртгэл үүсгэх"
+                        Clicked="OnCreateAccountClicked"
+                        HeightRequest="48"
+                        CornerRadius="8"
+                        BackgroundColor="{StaticResource Surface}"
+                        BorderColor="{StaticResource SoftStroke}"
+                        BorderWidth="1"
+                        TextColor="{StaticResource MutedInk}"
+                        FontFamily="OpenSansSemibold" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="store_app.ProfilePage"
+             Shell.NavBarIsVisible="False"
+             SafeAreaEdges="Container"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid>
+    <ScrollView x:Name="ProfileContent">
+        <VerticalStackLayout Padding="20,18,20,28" Spacing="18">
+            <Border Padding="18"
+                    StrokeShape="RoundRectangle 24"
+                    StrokeThickness="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2563EB" Offset="0" />
+                        <GradientStop Color="#0EA5E9" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid ColumnDefinitions="64,*" ColumnSpacing="14">
+                    <Border WidthRequest="64"
+                            HeightRequest="64"
+                            BackgroundColor="#33FFFFFF"
+                            StrokeShape="RoundRectangle 22"
+                            StrokeThickness="0">
+                        <Label Text="Б"
+                               FontSize="28"
+                               FontFamily="OpenSansSemibold"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="3"
+                                         VerticalOptions="Center">
+                        <Label x:Name="ProfileNameLabel"
+                               Text="Бат-Эрдэнэ"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="25"
+                               TextColor="White" />
+                        <Label x:Name="ProfileSubtitleLabel"
+                               Text="QR loyalty идэвхтэй"
+                               FontSize="13"
+                               TextColor="#DBEAFE" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Border Padding="16"
+                        BackgroundColor="{StaticResource Surface}"
+                        Stroke="{StaticResource SoftStroke}"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Оноо"
+                               Style="{StaticResource MutedText}" />
+                        <Label x:Name="ProfilePointLabel"
+                               Style="{StaticResource PriceText}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Column="1"
+                        Padding="16"
+                        BackgroundColor="{StaticResource Surface}"
+                        Stroke="{StaticResource SoftStroke}"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Захиалга"
+                               Style="{StaticResource MutedText}" />
+                        <Label Text="12"
+                               Style="{StaticResource PriceText}" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Бүртгэл"
+                       Style="{StaticResource SectionTitle}" />
+                <Border Padding="14"
+                        BackgroundColor="{StaticResource Surface}"
+                        Stroke="{StaticResource SoftStroke}"
+                        StrokeShape="RoundRectangle 22">
+                    <VerticalStackLayout Spacing="0">
+                        <Grid ColumnDefinitions="42,*,32"
+                              ColumnSpacing="12"
+                              Padding="0,3,0,13"
+                              AutomationId="personal">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProfileActionTapped" />
+                            </Grid.GestureRecognizers>
+                            <Border WidthRequest="42"
+                                    HeightRequest="42"
+                                    BackgroundColor="{StaticResource BlueSoft}"
+                                    StrokeShape="RoundRectangle 16"
+                                    StrokeThickness="0">
+                                <Label Text="ID"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="12"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="2"
+                                                 VerticalOptions="Center">
+                                <Label Text="Хувийн мэдээлэл"
+                                       Style="{StaticResource CardTitle}" />
+                                <Label Text="Нэр, loyalty төлөв"
+                                       Style="{StaticResource MutedText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="2"
+                                    WidthRequest="32"
+                                    HeightRequest="32"
+                                    BackgroundColor="{StaticResource ProductImageSurface}"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    VerticalOptions="Center">
+                                <Label Text="›"
+                                       FontSize="20"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                        </Grid>
+                        <BoxView HeightRequest="1"
+                                 BackgroundColor="{StaticResource ProductImageSurface}" />
+
+                        <Grid ColumnDefinitions="42,*,32"
+                              ColumnSpacing="12"
+                              Padding="0,13"
+                              AutomationId="address">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProfileActionTapped" />
+                            </Grid.GestureRecognizers>
+                            <Border WidthRequest="42"
+                                    HeightRequest="42"
+                                    BackgroundColor="{StaticResource ProductImageSurface}"
+                                    StrokeShape="RoundRectangle 16"
+                                    StrokeThickness="0">
+                                <Label Text="Х"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="2"
+                                                 VerticalOptions="Center">
+                                <Label Text="Хүргэлтийн хаяг"
+                                       Style="{StaticResource CardTitle}" />
+                                <Label Text="60 минутын хүргэлтийн бүс"
+                                       Style="{StaticResource MutedText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="2"
+                                    WidthRequest="32"
+                                    HeightRequest="32"
+                                    BackgroundColor="{StaticResource ProductImageSurface}"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    VerticalOptions="Center">
+                                <Label Text="›"
+                                       FontSize="20"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                        </Grid>
+                        <BoxView HeightRequest="1"
+                                 BackgroundColor="{StaticResource ProductImageSurface}" />
+
+                        <Grid ColumnDefinitions="42,*,32"
+                              ColumnSpacing="12"
+                              Padding="0,13"
+                              AutomationId="payment">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProfileActionTapped" />
+                            </Grid.GestureRecognizers>
+                            <Border WidthRequest="42"
+                                    HeightRequest="42"
+                                    BackgroundColor="{StaticResource WarningSoft}"
+                                    StrokeShape="RoundRectangle 16"
+                                    StrokeThickness="0">
+                                <Label Text="₮"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="17"
+                                       TextColor="{StaticResource Ink}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="2"
+                                                 VerticalOptions="Center">
+                                <Label Text="Төлбөрийн арга"
+                                       Style="{StaticResource CardTitle}" />
+                                <Label Text="Карт, QR, loyalty оноо"
+                                       Style="{StaticResource MutedText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="2"
+                                    WidthRequest="32"
+                                    HeightRequest="32"
+                                    BackgroundColor="{StaticResource ProductImageSurface}"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    VerticalOptions="Center">
+                                <Label Text="›"
+                                       FontSize="20"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                        </Grid>
+                        <BoxView HeightRequest="1"
+                                 BackgroundColor="{StaticResource ProductImageSurface}" />
+
+                        <Grid ColumnDefinitions="42,*,32"
+                              ColumnSpacing="12"
+                              Padding="0,13,0,3"
+                              AutomationId="orders">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProfileActionTapped" />
+                            </Grid.GestureRecognizers>
+                            <Border WidthRequest="42"
+                                    HeightRequest="42"
+                                    BackgroundColor="{StaticResource ProductImageSurface}"
+                                    StrokeShape="RoundRectangle 16"
+                                    StrokeThickness="0">
+                                <Label Text="#"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="18"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="2"
+                                                 VerticalOptions="Center">
+                                <Label Text="Миний захиалгууд"
+                                       Style="{StaticResource CardTitle}" />
+                                <Label Text="Сүүлийн захиалгын түүх"
+                                       Style="{StaticResource MutedText}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="2"
+                                    WidthRequest="32"
+                                    HeightRequest="32"
+                                    BackgroundColor="{StaticResource ProductImageSurface}"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    VerticalOptions="Center">
+                                <Label Text="›"
+                                       FontSize="20"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <Border Padding="16"
+                    BackgroundColor="{StaticResource BlueSoft}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 18"
+                    AutomationId="games">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProfileActionTapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Тоглоомоор оноо цуглуулах"
+                               Style="{StaticResource CardTitle}" />
+                        <Label Text="Memory card болон Flappy Bird тоглоом"
+                               Style="{StaticResource MutedText}" />
+                    </VerticalStackLayout>
+                    <Border Grid.Column="1"
+                            Padding="12,7"
+                            BackgroundColor="{StaticResource WarningSoft}"
+                            StrokeShape="RoundRectangle 14"
+                            StrokeThickness="0"
+                            VerticalOptions="Center">
+                        <Label Text="Орох"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="12"
+                               TextColor="{StaticResource Ink}" />
+                    </Border>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+
+        <Grid x:Name="ProfileDialogOverlay"
+              IsVisible="False"
+              Opacity="0"
+              Padding="24"
+              BackgroundColor="#990F172A">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnProfileDialogBackdropTapped" />
+            </Grid.GestureRecognizers>
+
+            <Border x:Name="ProfileDialogCard"
+                    Padding="22"
+                    BackgroundColor="{StaticResource Surface}"
+                    Stroke="{StaticResource SoftStroke}"
+                    StrokeShape="RoundRectangle 26"
+                    StrokeThickness="1"
+                    MaximumWidthRequest="326"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    Scale="0.96">
+                <VerticalStackLayout Spacing="16">
+                    <Grid ColumnDefinitions="Auto,*"
+                          ColumnSpacing="14">
+                        <Border WidthRequest="52"
+                                HeightRequest="52"
+                                BackgroundColor="{StaticResource BlueSoft}"
+                                StrokeShape="RoundRectangle 20"
+                                StrokeThickness="0">
+                            <Label x:Name="ProfileDialogIconLabel"
+                                   Text="ID"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="14"
+                                   TextColor="{StaticResource Primary}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1"
+                                             Spacing="3"
+                                             VerticalOptions="Center">
+                            <Label x:Name="ProfileDialogTitleLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="18"
+                                   TextColor="{StaticResource Ink}" />
+                            <Label x:Name="ProfileDialogSubtitleLabel"
+                                   Style="{StaticResource MutedText}"
+                                   LineBreakMode="WordWrap" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Border Padding="14"
+                            BackgroundColor="{StaticResource ProductImageSurface}"
+                            StrokeShape="RoundRectangle 18"
+                            StrokeThickness="0">
+                        <VerticalStackLayout Spacing="8">
+                            <Label x:Name="ProfileDialogPrimaryLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="14"
+                                   TextColor="{StaticResource Ink}"
+                                   LineBreakMode="WordWrap" />
+                            <Label x:Name="ProfileDialogSecondaryLabel"
+                                   FontSize="13"
+                                   TextColor="{StaticResource MutedInk}"
+                                   LineBreakMode="WordWrap" />
+                            <Label x:Name="ProfileDialogMetaLabel"
+                                   FontSize="13"
+                                   TextColor="{StaticResource Primary}"
+                                   LineBreakMode="WordWrap" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Button Text="OK"
+                            Clicked="OnProfileDialogOkClicked"
+                            HeightRequest="48"
+                            CornerRadius="18"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            FontFamily="OpenSansSemibold" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>
